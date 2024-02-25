@@ -47,10 +47,10 @@ The HRMS (Human Resource Management System) utilizes a simple relational databas
 
 ## Design Decisions
 
-    - Serialization: Both Employee and Attendance classes include a serialize method to easily convert the objects to a dictionary. This is useful for JSON serialization when providing data through API endpoints or rendering templates.
+   - Serialization: Both Employee and Attendance classes include a serialize method to easily convert the objects to a dictionary. This is useful for JSON serialization when providing data through API endpoints or rendering templates.
 
-    - Relationships: The Employee and Attendance classes are linked through a one-to-many relationship. An employee can have multiple attendance records, but each attendance record is associated with a single employee.
+   - Relationships: The Employee and Attendance classes are linked through a one-to-many relationship. An employee can have multiple attendance records, but each attendance record is associated with a single employee.
 
-    - Default Values: The in_time attribute in the Attendance class has a default value of the current UTC time. This ensures that if the check-in time is not provided explicitly, it defaults to the current time.
+   - Default Values: The in_time attribute in the Attendance class has a default value of the current UTC time. This ensures that if the check-in time is not provided explicitly, it defaults to the current time.
 
-    - Back-populates Relationship: The relationship attribute back_populates is used to correctly define the bidirectional relationship between Employee and Attendance. This ensures consistency when navigating the relationships from either side.
+   - Back-populates Relationship: The relationship attribute back_populates is used to correctly define the bidirectional relationship between Employee and Attendance. This ensures consistency when navigating the relationships from either side.
