@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}HRMS - Employee Details{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='employee_details.css') }}" />
+<h1>Employee Details</h1>
+<h2>{{ employee.name }}</h2>
+<p>Department: {{ employee.department }}</p>
+
+<h3>Attendance</h3>
+<ul>
+    {% for entry in attendance %}
+    <li>
+        {{ entry.date }} - In: {{ entry.in_time }}, Out: {{ entry.out_time }}
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{{ url_for('employees') }}">Back to Employees List</a>
+<a href="{{ url_for('index') }}">Back to Home</a>
+{% endblock %}

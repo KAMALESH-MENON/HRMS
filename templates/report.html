@@ -1,0 +1,61 @@
+{% extends 'base.html' %} {% block title %}HRMS Report{% endblock %} {% block
+content %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='report.css') }}" />
+
+<h1>HRMS Report</h1>
+
+<!-- Container for layout -->
+<div class="container">
+  <!-- Table for Department-wise Employee Count -->
+  <div>
+    <h2>Department-wise Employee Count (Table)</h2>
+    <table>
+      <tr>
+        <th>Department</th>
+        <th>Employee Count</th>
+      </tr>
+      {% for department, count in report_data.items() %}
+      <tr>
+        <td>{{ department }}</td>
+        <td>{{ count }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <!-- Chart for Department-wise Employee Count -->
+  <div>
+    <h2>Department-wise Employee Count (Chart)</h2>
+    <canvas id="departmentChart"></canvas>
+
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add chart data -->
+    <script>
+        var departmentData = {
+            labels: [{% for department, count in report_data.items() %}"{{ department }}", {% endfor %}],
+            datasets: [{
+                data: [{% for department, count in report_data.items() %}{{ count }}, {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(255, 206, 86, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 159, 64, 0.7)',
+                ],
+            }]
+        };
+        var ctx = document.getElementById('departmentChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: departmentData,
+        });
+    </script>
+  </div>
+</div>
+
+{% endblock %}
