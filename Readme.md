@@ -13,7 +13,7 @@ This Flask web application manages employee information and attendance.
 
 1. Clone the repository:
 
-    git clone https://github.com/your-username/hrms-web-app.git
+    git clone https://github.com/KAMALESH-MENON/HRMS.git
 
 2. Install dependencies:
 
